@@ -6,6 +6,7 @@ const Brazil = () => import("@/views/Brazil.vue");
 const Panama = () => import("@/views/Panama.vue");
 const Hawaii = () => import("@/views/Hawaii.vue");
 const Jamaica = () => import("@/views/Jamaica.vue");
+const DestinationShow = () => import("@/views/DestinationShow.vue");
 
 const routes = [
   {
@@ -37,6 +38,10 @@ const routes = [
     path: "/jamaica",
     name: "Jamaica",
     component: Jamaica,
+  },
+  {
+    path: "/destination/:id",
+    component: DestinationShow,
   },
 ];
 
