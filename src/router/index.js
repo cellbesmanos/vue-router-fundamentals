@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 
 const DestinationShow = () => import("@/views/DestinationShow.vue");
+const ExperienceShow = () => import("@/views/ExperienceShow.vue");
 
 const routes = [
   {
@@ -13,7 +14,13 @@ const routes = [
     path: "/destination/:id/:slug",
     name: "destination.show",
     component: DestinationShow,
-    props: (route) => ({ id: parseInt(route.params.id) }),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+  },
+  {
+    path: "/destination/:id/:slug/:experienceSlug",
+    name: "experience.show",
+    component: ExperienceShow,
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
   },
 ];
 
