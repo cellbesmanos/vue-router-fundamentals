@@ -15,12 +15,14 @@ const routes = [
     name: "destination.show",
     component: DestinationShow,
     props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
-  },
-  {
-    path: "/destination/:id/:slug/:experienceSlug",
-    name: "experience.show",
-    component: ExperienceShow,
-    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+    children: [
+      {
+        path: ":experienceSlug",
+        name: "experience.show",
+        component: ExperienceShow,
+        props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+      },
+    ],
   },
 ];
 

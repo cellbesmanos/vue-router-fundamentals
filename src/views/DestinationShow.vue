@@ -17,12 +17,14 @@
         :key="experience.slug"
         :to="{
           name: 'experience.show',
-          params: { id: props.id, experienceSlug: experience.slug },
+          params: { experienceSlug: experience.slug },
         }"
       >
         <ExperiencesCard :experience="experience" />
       </router-link>
     </div>
+
+    <router-view />
   </section>
 </template>
 
