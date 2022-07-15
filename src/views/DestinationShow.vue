@@ -1,31 +1,38 @@
 <template>
   <article class="destination">
-    <h1>{{ currentDestination.name }}</h1>
+    <template v-if="!destination.loading">
+      <h1>{{ destination.data.name }}</h1>
 
-    <div class="destination-details">
-      <img
-        :src="`/images/${currentDestination.image}`"
-        :alt="currentDestination.name"
-      />
-      <p>{{ currentDestination.description }}</p>
-    </div>
+      <div class="destination-details">
+        <img
+          :src="`/images/${destination.data.image}`"
+          :alt="destination.data.name"
+        />
+        <p>{{ destination.data.description }}</p>
+      </div>
+    </template>
+    <p v-else>Loading...</p>
   </article>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
-import sourceData from "@/data.json";
 
 const route = useRoute();
+const destination = reactive({ data: null, loading: true });
 
-const destinationId = computed(() => {
-  return parseInt(route.params.id);
-});
-
-const currentDestination = computed(() => {
-  return sourceData.destinations.find(
-    (destination) => destination.id === destinationId.value
+onMounted(async () => {
+  const response = await fetch(
+    `https://travel-dummy-api.netlify.app/${route.params.slug}`
   );
+
+  if (response.status !== 200) {
+    throw new Error("Cannot connect to server.");
+  }
+
+  const json = await response.json();
+  destination.data = json;
+  destination.loading = false;
 });
 </script>
