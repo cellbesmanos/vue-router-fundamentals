@@ -2,6 +2,8 @@
   <article class="destination">
     <h1>{{ destination.name }}</h1>
 
+    <BackButton />
+
     <div class="destination-details">
       <img :src="`/images/${destination.image}`" :alt="destination.name" />
       <p>{{ destination.description }}</p>
@@ -32,6 +34,7 @@
 import { computed } from "vue";
 import sourceData from "@/data.json";
 import ExperiencesCard from "../components/ExperiencesCard.vue";
+import BackButton from "../components/BackButton.vue";
 
 const props = defineProps({
   id: {
