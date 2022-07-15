@@ -13,6 +13,7 @@ const routes = [
     path: "/destination/:id/:slug",
     name: "destination.show",
     component: DestinationShow,
+    props: (route) => ({ id: parseInt(route.params.id) }),
   },
 ];
 
