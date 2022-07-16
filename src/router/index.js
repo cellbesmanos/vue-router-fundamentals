@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 
 const DestinationShow = () => import("@/views/DestinationShow.vue");
 const ExperienceShow = () => import("@/views/ExperienceShow.vue");
+const NotFound = () => import("@/views/NotFound.vue");
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
         props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
